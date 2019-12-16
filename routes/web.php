@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
+    $count=DB::table('users')->count();
+    dump($count);
+    exit();
     return view('welcome');
 });
