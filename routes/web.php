@@ -11,9 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    $count=DB::table('users')->count();
-    dump($count);
-    exit();
-    return view('welcome');
-});
+//Route::get('/', function () {
+////    $count=DB::table('users')->count();
+////    dump($count);
+////    exit();
+//    return view('welcome');
+//});
+
+//Route::view('/','start');
+
+//Route::get('/',function (){
+//    return view('start');
+//});
+
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
