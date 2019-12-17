@@ -81,10 +81,11 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Laravel
+            HomeWork
         </div>
 
         <div class="links">
+            <a href="/auth/register">Register</a>
             <a href="https://laravel.com/docs">Docs</a>
             <a href="https://laracasts.com">Laracasts</a>
             <a href="https://laravel-news.com">News</a>

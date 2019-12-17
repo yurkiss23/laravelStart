@@ -18,11 +18,13 @@
 //    return view('welcome');
 //});
 
-//Route::view('/','start');
+Route::view('/','start');
 
 //Route::get('/',function (){
 //    return view('start');
 //});
 
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+//Route::get('auth/register', 'Auth\RegisterController@create');
+//Route::post('auth/register', 'Auth\RegisterController@create');
+
+Route::view('auth/register','auth/register');
