@@ -17,6 +17,7 @@
 ////    exit();
 //    return view('welcome');
 //});
+Route::view('/{path?}', 'app');
 
 Route::view('/','start');
 
@@ -28,3 +29,4 @@ Route::view('/','start');
 //Route::post('auth/register', 'Auth\RegisterController@create');
 
 Route::view('auth/register','auth/register');
+
