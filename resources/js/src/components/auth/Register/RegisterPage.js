@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import TextFieldGroup from "../../common/TextFieldGroup";
 import ImageFieldGroupCropper from "../../common/ImageFieldGroupCropper";
 import PhoneFieldGroup from "../../common/PhoneFieldGroup";
+import ReCAPTCHA from "react-google-recaptcha";
+
+const recaptchaRef = React.createRef();
 
 export class RegisterPage extends Component {
     state = {
@@ -52,6 +55,9 @@ export class RegisterPage extends Component {
         } else {
             this.setState({ errors });
         }
+
+        const recaptchaValue = recaptchaRef.current.getValue();
+        this.props.onSubmit(recaptchaValue);
     };
 
     getCroppedImage = img => {
@@ -129,6 +135,13 @@ export class RegisterPage extends Component {
                         error={errors.passwordConfirm}
                         onChange={this.handleChange}
                         type="password"
+                    />
+
+                    <ReCAPTCHA
+                        ref={recaptchaRef}
+                        // size="invisible"
+                        sitekey="Your client site key"
+                        onChange={this.handleChange}
                     />
 
                     <div className="form-group">
