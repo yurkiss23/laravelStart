@@ -6,6 +6,7 @@ import Register from './components/auth/Register';
 import NavHeader from './components/Header/NavHeader';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 export class App extends Component {
     render() {
