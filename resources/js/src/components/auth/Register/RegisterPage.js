@@ -77,9 +77,9 @@ export class RegisterPage extends Component {
         e.preventDefault();
         let { errors } = this.state;
         if(e.target.value === ""){
-            if (e.target.name = 'email') errors.email = "Поле не може бути пустим!";
-            if (e.target.name = 'photo') errors.photo = "Закинь фотку!";
-            if (e.target.name = 'phone') errors.phone = "Дай номер!";
+            // if (e.target.name = 'email') errors.email = "Поле не може бути пустим!";
+            // if (e.target.name = 'photo') errors.photo = "Закинь фотку!";
+            // if (e.target.name = 'phone') errors.phone = "Дай номер!";
         }else{
             console.log(e.target.value);
             

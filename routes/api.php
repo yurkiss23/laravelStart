@@ -23,3 +23,6 @@ Route::get('projects/{id}', 'ProjectController@show');
 Route::put('projects/{project}', 'ProjectController@markAsCompleted');
 Route::post('tasks', 'TaskController@store');
 Route::put('tasks/{task}', 'TaskController@markAsCompleted');
+
+Route::get('reg', 'RegController@index');
+Route::post('reg', 'RegController@index');
