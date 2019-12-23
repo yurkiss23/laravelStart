@@ -57,7 +57,7 @@ export class RegisterPage extends Component {
         }
 
         const recaptchaValue = recaptchaRef.current.getValue();
-        this.props.onSubmit(recaptchaValue);
+        props.onSubmit(recaptchaValue);
     };
 
     getCroppedImage = img => {
@@ -71,6 +71,20 @@ export class RegisterPage extends Component {
         } else {
             this.setState({ photo: img });
         }
+    };
+
+    handleBlur = (e) => {
+        e.preventDefault();
+        let { errors } = this.state;
+        if(e.target.value === ""){
+            if (e.target.name = 'email') errors.email = "Поле не може бути пустим!";
+            if (e.target.name = 'photo') errors.photo = "Закинь фотку!";
+            if (e.target.name = 'phone') errors.phone = "Дай номер!";
+        }else{
+            console.log(e.target.value);
+            
+        }
+        console.log('----blur---');
     };
 
     render() {
@@ -94,6 +108,7 @@ export class RegisterPage extends Component {
                         value={email}
                         error={errors.email}
                         onChange={this.handleChange}
+                        onBlur={this.handleBlur}
                     />
 
                     <PhoneFieldGroup

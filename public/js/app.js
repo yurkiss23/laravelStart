@@ -77714,8 +77714,7 @@ function (_Component) {
       }
 
       var recaptchaValue = recaptchaRef.current.getValue();
-
-      _this.props.onSubmit(recaptchaValue);
+      props.onSubmit(recaptchaValue);
     });
 
     _defineProperty(_assertThisInitialized(_this), "getCroppedImage", function (img) {
@@ -77732,6 +77731,21 @@ function (_Component) {
           photo: img
         });
       }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleBlur", function (e) {
+      e.preventDefault();
+      var errors = _this.state.errors;
+
+      if (e.target.value === "") {
+        if (e.target.name = 'email') errors.email = "Поле не може бути пустим!";
+        if (e.target.name = 'photo') errors.photo = "Закинь фотку!";
+        if (e.target.name = 'phone') errors.phone = "Дай номер!";
+      } else {
+        console.log(e.target.value);
+      }
+
+      console.log('----blur---');
     });
 
     return _this;
@@ -77760,7 +77774,8 @@ function (_Component) {
         label: "\u0415\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u0430 \u043F\u043E\u0448\u0442\u0430",
         value: email,
         error: errors.email,
-        onChange: this.handleChange
+        onChange: this.handleChange,
+        onBlur: this.handleBlur
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_PhoneFieldGroup__WEBPACK_IMPORTED_MODULE_3__["default"], {
         field: "phone",
         label: "\u0422\u0435\u043B\u0435\u0444\u043E\u043D",
