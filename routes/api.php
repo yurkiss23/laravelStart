@@ -25,4 +25,4 @@ Route::post('tasks', 'TaskController@store');
 Route::put('tasks/{task}', 'TaskController@markAsCompleted');
 
 Route::get('reg', 'RegController@index');
-Route::post('reg', 'RegController@index');
+Route::post('reg', 'RegController@register');

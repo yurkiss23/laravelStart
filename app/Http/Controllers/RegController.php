@@ -12,4 +12,12 @@ class RegController extends Controller
 
         return $test;
     }
+
+    public function register(Request $request)
+    {
+        // echo $request;
+        if($request->email=='admin@gmail.com'){
+            return response()->json(['email'=>'Пошта вже існує'],400);
+        }
+    }
 }

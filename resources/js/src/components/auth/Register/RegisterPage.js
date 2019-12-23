@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import TextFieldGroup from "../../common/TextFieldGroup";
 import ImageFieldGroupCropper from "../../common/ImageFieldGroupCropper";
 import PhoneFieldGroup from "../../common/PhoneFieldGroup";
@@ -75,16 +76,32 @@ export class RegisterPage extends Component {
 
     handleBlur = (e) => {
         e.preventDefault();
+        const {email}=this.state;
+        // console.log('--email-state--',email);
         let { errors } = this.state;
-        if(e.target.value === ""){
+        if(email === ""){
             // if (e.target.name = 'email') errors.email = "Поле не може бути пустим!";
             // if (e.target.name = 'photo') errors.photo = "Закинь фотку!";
             // if (e.target.name = 'phone') errors.phone = "Дай номер!";
         }else{
-            console.log(e.target.value);
-            
+            console.log(email);
+            const model={
+                email:email
+            };
+            axios.post('api/reg',model)
+                .then((resp)=>{
+                    console.log('--email onBlur--',resp);
+                },
+                error=> {
+                    throw error.response.data;
+                })
+                .catch(err => {
+                    this.setState({
+                        errors: err
+                    });
+                });
         }
-        console.log('----blur---');
+        console.log('----blurEnd---');
     };
 
     render() {

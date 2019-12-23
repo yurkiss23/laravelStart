@@ -77615,10 +77615,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPage", function() { return RegisterPage; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/TextFieldGroup */ "./resources/js/src/components/common/TextFieldGroup.js");
-/* harmony import */ var _common_ImageFieldGroupCropper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../common/ImageFieldGroupCropper */ "./resources/js/src/components/common/ImageFieldGroupCropper.js");
-/* harmony import */ var _common_PhoneFieldGroup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/PhoneFieldGroup */ "./resources/js/src/components/common/PhoneFieldGroup.js");
-/* harmony import */ var react_google_recaptcha__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-google-recaptcha */ "./node_modules/react-google-recaptcha/lib/esm/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../common/TextFieldGroup */ "./resources/js/src/components/common/TextFieldGroup.js");
+/* harmony import */ var _common_ImageFieldGroupCropper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/ImageFieldGroupCropper */ "./resources/js/src/components/common/ImageFieldGroupCropper.js");
+/* harmony import */ var _common_PhoneFieldGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common/PhoneFieldGroup */ "./resources/js/src/components/common/PhoneFieldGroup.js");
+/* harmony import */ var react_google_recaptcha__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-google-recaptcha */ "./node_modules/react-google-recaptcha/lib/esm/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -77638,6 +77640,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -77735,16 +77738,30 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleBlur", function (e) {
       e.preventDefault();
+      var email = _this.state.email; // console.log('--email-state--',email);
+
       var errors = _this.state.errors;
 
-      if (e.target.value === "") {// if (e.target.name = 'email') errors.email = "Поле не може бути пустим!";
+      if (email === "") {// if (e.target.name = 'email') errors.email = "Поле не може бути пустим!";
         // if (e.target.name = 'photo') errors.photo = "Закинь фотку!";
         // if (e.target.name = 'phone') errors.phone = "Дай номер!";
       } else {
-        console.log(e.target.value);
+        console.log(email);
+        var model = {
+          email: email
+        };
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/reg', model).then(function (resp) {
+          console.log('--email onBlur--', resp);
+        }, function (error) {
+          throw error.response.data;
+        })["catch"](function (err) {
+          _this.setState({
+            errors: err
+          });
+        });
       }
 
-      console.log('----blur---');
+      console.log('----blurEnd---');
     });
 
     return _this;
@@ -77768,45 +77785,45 @@ function (_Component) {
       }, "\u0420\u0435\u0454\u0441\u0442\u0440\u0430\u0446\u0456\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         name: "form",
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
         field: "email",
         label: "\u0415\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u0430 \u043F\u043E\u0448\u0442\u0430",
         value: email,
         error: errors.email,
         onChange: this.handleChange,
         onBlur: this.handleBlur
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_PhoneFieldGroup__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_PhoneFieldGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
         field: "phone",
         label: "\u0422\u0435\u043B\u0435\u0444\u043E\u043D",
         value: phone,
         error: errors.phone,
         onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ImageFieldGroupCropper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_ImageFieldGroupCropper__WEBPACK_IMPORTED_MODULE_3__["default"], {
         getCroppedImage: this.getCroppedImage,
         error: errors.photo,
         photo: photo
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
         field: "dateBirth",
         label: "\u0414\u0430\u0442\u0430 \u043D\u0430\u0440\u043E\u0434\u0436\u0435\u043D\u043D\u044F",
         value: dateBirth,
         error: errors.dateBirth,
         onChange: this.handleChange,
         type: "date"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
         field: "password",
         label: "\u041F\u0430\u0440\u043E\u043B\u044C",
         value: password,
         error: errors.password,
         onChange: this.handleChange,
         type: "password"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_TextFieldGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
         field: "passwordConfirm",
         label: "\u041F\u0456\u0434\u0442\u0432\u0435\u0440\u0436\u0435\u043D\u043D\u044F \u043F\u0430\u0440\u043E\u043B\u044F",
         value: passwordConfirm,
         error: errors.passwordConfirm,
         onChange: this.handleChange,
         type: "password"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_google_recaptcha__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_google_recaptcha__WEBPACK_IMPORTED_MODULE_5__["default"], {
         ref: recaptchaRef // size="invisible"
         ,
         sitekey: "Your client site key",
